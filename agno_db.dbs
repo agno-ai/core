@@ -16,7 +16,7 @@
 			<column name="face_id" type="VARCHAR" length="55" jt="12" mandatory="y" />
 			<column name="timestamp" type="TIMESTAMP" jt="93" mandatory="y" />
 			<column name="emotion" type="VARCHAR" length="55" jt="12" mandatory="y" />
-			<column name="image" type="VARBINARY" length="55" jt="-3" mandatory="y" />
+			<column name="image" type="BLOB" length="55" jt="-3" mandatory="y" />
 			<index name="idx_Users" unique="NORMAL" >
 				<column name="account_id" />
 			</index>
@@ -49,7 +49,7 @@ CREATE TABLE agno-db-dev.Users (
     face_id VARCHAR( 55 ) NOT NULL    ,
     timestamp TIMESTAMP NOT NULL    ,
     emotion VARCHAR( 55 ) NOT NULL    ,
-    image BLOB( 55 ) NOT NULL    ,
+    image BLOB NOT NULL    ,
 CONSTRAINT PK_Users PRIMARY KEY ( EntryNo )
  ) ;
 
@@ -76,7 +76,7 @@ CREATE TABLE agno-db-dev.Users (
     face_id VARCHAR( 55 ) NOT NULL    ,
     timestamp TIMESTAMP NOT NULL    ,
     emotion VARCHAR( 55 ) NOT NULL    ,
-    image VARBINARY( 55 ) NOT NULL    ,
+    image BLOB NOT NULL    ,
 CONSTRAINT PK_Users PRIMARY KEY ( EntryNo )
  ) ;
 
