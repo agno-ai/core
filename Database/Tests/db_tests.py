@@ -5,8 +5,7 @@ from mysql.connector import Error
 from termcolor import colored
 import datetime
 
-
-#Test connection to database server
+#**********************Test connection to database server*****************************#
 
 
 
@@ -30,7 +29,6 @@ try:
 except Error as e:
     print("Connection Test Failed", e)
     print(colored('Connection test---------- FAILED', 'red'))
-	
 finally:
     if (connection.is_connected()):
         cursor.close()
@@ -39,7 +37,7 @@ finally:
         
         
 		
-#Test connection using invalid credentials
+####****************Test connection using invalid credentials******###########
 
 
 print(colored("\n--------------Starting Invalid credentials testing-----------------","blue"))
@@ -62,14 +60,13 @@ try:
 except Error as e:
     print("Credential Test Passed", e)
     print(colored('Credential Test--------- PASSED', 'green'))
-	
 finally:
     if (connection.is_connected()):
         cursor.close()
         connection.close()
 		
         
-#Test selection from DB tables
+########*************************Test selection from DB tables######################
 
 print(colored("\n--------------Starting SELECT Query Test-----------------","blue"))
 
@@ -100,7 +97,47 @@ try:
 except Error as e:
     print("Error reading data from MySQL table", e)
     print(colored('SELECT Query test ------- FAILED', 'red'))
-	
+finally:
+    if (connection.is_connected()):
+        connection.close()
+        cursor.close()
+        
+        
+################*************Test Schema Entities*****************###################
+
+print(colored("\n--------------Starting Schema Test-----------------","blue"))
+
+try:
+    connection = mysql.connector.connect(host='agno-db-dev.c2witq1chtnp.eu-central-1.rds.amazonaws.com',
+                                         database='agno_db',
+                                         user='agnoteam',
+                                         password='pw4agnodb')
+    if connection.is_connected():
+        sql_select_Query = "SELECT * FROM information_schema.tables WHERE TABLE_SCHEMA = 'agno_db';"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        
+        if cursor.rowcount == 0:
+            print(colored('Schema test ------- FAILED', 'red'))
+        else:
+            
+            
+            print("Current number of tables in Database is--> ", cursor.rowcount)
+
+            print("\nPrinting schema info\n")
+            for row in records:
+                print("Table Schema --> ", row[1], )
+                print("Table Name --> ", row[2])
+                print("Table Type --> ", row[3])
+                print("Engine --> ", row[4],"\n")
+            print(colored('Schema test ------- PASSED', 'green'))
+            
+        
+
+except Error as e:
+    print("Error reading data from MySQL table", e)
+    print(colored('Schema test ------- FAILED', 'red'))
 finally:
     if (connection.is_connected()):
         connection.close()
