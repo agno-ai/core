@@ -1,8 +1,8 @@
 const UserSerializer = {
-  serialize({ id, name }) {
+  serialize({ face_id, account_id }) {
     return {
-      id,
-      name
+      face_id,
+      account_id
     };
   }
 };

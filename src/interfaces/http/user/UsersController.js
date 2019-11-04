@@ -9,10 +9,10 @@ const UsersController = {
     router.use(inject('userSerializer'));
 
     router.get('/', inject('getAllUsers'), this.index);
-    router.get('/:id', inject('getUser'), this.show);
+    router.get('/:face_id', inject('getUser'), this.show);
     router.post('/', inject('createUser'), this.create);
-    router.put('/:id', inject('updateUser'), this.update);
-    router.delete('/:id', inject('deleteUser'), this.delete);
+    router.put('/:face_id', inject('updateUser'), this.update);
+    router.delete('/:face_id', inject('deleteUser'), this.delete);
 
     return router;
   },
