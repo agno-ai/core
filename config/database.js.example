@@ -1,0 +1,21 @@
+// Use same structure in a database.js file created in config dir
+//test not compulsory
+module.exports = {
+  development: {
+    username: 'root',
+    password: null,
+    database: 'sample_database',
+    host: '127.0.0.1',
+    dialect: 'postgres' // dialect not necessary for mysql
+  },
+  test: {
+    username: 'root',
+    password: null,
+    database: 'sample_database',
+    host: '127.0.0.1',
+    dialect: 'postgres', // dialect not necessary for mysql
+    logging: null
+  },
+  production: process.env.DATABASE_URL
+};
+
