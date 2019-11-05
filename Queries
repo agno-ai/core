@@ -1,0 +1,23 @@
+-- create a new account (for each mirror one)
+INSERT INTO Account (account_name, username, password_hash) 
+VALUES ('family', 'anna', 'tomato');
+
+-- Test
+SELECT * FROM Account;
+
+-- to insert a feature account Id is necessary
+INSERT INTO Users (account_id, face_id, timestamp, emotion, image) 
+VALUES (1, 'anna', '2015-12-29' ,'happy', 1);
+
+-- Test
+SELECT * FROM Users;
+
+-- return view of all information if password and username correct
+
+CREATE VIEW features AS
+SELECT u.face_id, u.timestamp, u.emotion 
+FROM  Users u INNER JOIN Account a ON a.account_id = u.account_id
+WHERE a.username = 'anna' AND a.password_hash = 'tomato';
+
+
+
