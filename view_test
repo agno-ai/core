@@ -1,0 +1,41 @@
+print(colored("\n--------------Starting View Test-----------------","blue"))
+
+def pull_data():
+    print("Reading data from features view....")
+
+    try:
+        connection = mysql.connector.connect(host='agno-db-dev.c2witq1chtnp.eu-central-1.rds.amazonaws.com',
+                                             database='agno_db',
+                                             user='agnoteam',
+                                             password='pw4agnodb')
+
+        cursor = connection.cursor()
+        sql_fetch_view_query = """SELECT * FROM features;"""
+
+        cursor.execute(sql_fetch_view_query, ())
+        record = cursor.fetchall()
+	
+        if cursor.rowcount == 0:
+            print(colored('Queried data is non-existent\nView test ------- FAILED', 'red'))
+	
+        else:
+            for row in record:
+                print("Face ID = ", row[0], )
+                print("Timestamp = ", row[1])
+                print("Emotion = ", row[2])
+                
+		
+            print(colored('DataPull Test ------- PASSED', 'green'))
+            
+
+    except mysql.connector.Error as error:
+        print("Failed to read VIEW data from MySQL table {}".format(error))
+        print(colored('View test ------- FAILED', 'red'))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.close()
+            
+
+pull_data()
