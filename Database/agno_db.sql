@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS agno_db;
 CREATE SCHEMA agno_db;
 
 CREATE TABLE agno_db.Account ( 
@@ -5,6 +6,7 @@ CREATE TABLE agno_db.Account (
     account_name VARCHAR( 55 ) NOT NULL    ,
     username VARCHAR( 55 ) NOT NULL    ,
     password_hash VARCHAR( 55 ) NOT NULL    ,
+    mirror_id VARCHAR( 55 ) NOT NULL    ,
 CONSTRAINT PK_Table_0 PRIMARY KEY ( account_id )
  ) ;
 
