@@ -1,6 +1,6 @@
 module.exports = {
   web: {
-    port: process.env.RDS_PORT
+    port: 8081
   },
   logging: {
     appenders: [
