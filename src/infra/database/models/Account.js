@@ -2,7 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   const Account = sequelize.define('Account', {
-    account_name: DataTypes.STRING
+    account_id:DataTypes.INTEGER,
+    account_name: DataTypes.STRING,
+    username: DataTypes.STRING,
+    password_hash: DataTypes.STRING,
+    mirror_id: DataTypes.STRING
   }, {
     classMethods: {
       associate() {

@@ -10,13 +10,13 @@ const SequelizeUserMapper = {
       image
     } = dataValues;
 
-    return new User({ account_id, face_id, emotion, timestamp, image });
+    return { account_id, face_id, emotion, timestamp, image };
   },
 
   toDatabase(survivor) {
-    const { face_id } = survivor;
+    const { account_id, face_id, emotion, timestamp, image } = survivor;
 
-    return { face_id };
+    return { account_id, face_id, emotion, timestamp, image };
   }
 };
 
