@@ -10,3 +10,4 @@
 5. Add some seed data to the development database with *yarn sequelize db:seed:all*
 6. Run the application in development mode with *yarn dev*
 Access http://localhost:3000/api/users for sample users data
+7. In production, use http://agno-dev.eu-central-1.elasticbeanstalk.com/api/users for users api endpoint
