@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="agno_db" version="42" database="Cache" >
-	<schema name="agno-db-dev" schemaname="agno-db-dev" defo="y" >
+	<schema name="agno_db" schemaname="agno_db" defo="y" >
 		<table name="Account" storage="" >
 			<column name="account_id" type="INTEGER" jt="4" mandatory="y" autoincrement="y" />
 			<column name="account_name" type="VARCHAR" length="55" jt="12" mandatory="y" />
 			<column name="username" type="VARCHAR" length="55" jt="12" mandatory="y" />
 			<column name="password_hash" type="VARCHAR" length="55" jt="12" mandatory="y" />
+			<column name="mirror_id" type="VARCHAR" length="55" jt="12" mandatory="y" />
 			<index name="PK_Table_0" unique="PRIMARY_KEY" >
 				<column name="account_id" />
 			</index>
@@ -16,23 +17,23 @@
 			<column name="face_id" type="VARCHAR" length="55" jt="12" mandatory="y" />
 			<column name="timestamp" type="TIMESTAMP" jt="93" mandatory="y" />
 			<column name="emotion" type="VARCHAR" length="55" jt="12" mandatory="y" />
-			<column name="image" type="BLOB" length="55" jt="-3" mandatory="y" />
+			<column name="image" type="BLOB" jt="-3" mandatory="y" />
 			<index name="idx_Users" unique="NORMAL" >
 				<column name="account_id" />
 			</index>
 			<index name="PK_Users" unique="PRIMARY_KEY" >
 				<column name="EntryNo" />
 			</index>
-			<fk name="fk_users_account" to_schema="agno-db-dev" to_table="Account" >
+			<fk name="fk_users_account" to_schema="agno_db" to_table="Account" >
 				<fk_column name="account_id" pk="account_id" />
 			</fk>
 		</table>
 	</schema>
 	<connector name="Con_0" database="Cache" port="0" />
 	<layout name="Default" tab_index="0" >
-		<entity schema="agno-db-dev" name="Account" x="39" y="39" />
-		<entity schema="agno-db-dev" name="Users" x="208" y="156" />
-		<query name="Sql_000" tab_index="1" >
+		<entity schema="agno_db" name="Account" x="39" y="39" />
+		<entity schema="agno_db" name="Users" x="208" y="156" />
+		<query name="Sql_000" tab_index="-1" >
 			<string> <![CDATA[CREATE SCHEMA agno-db-dev;
 
 CREATE TABLE agno-db-dev.Account ( 
@@ -59,7 +60,63 @@ ALTER TABLE agno-db-dev.Users ADD FOREIGN KEY fk_users_account ( account_id ) RE
 
 ]]> </string>
 		</query>
-		<query name="Sql_003" tab_index="2" >
+		<query name="Sql_001" tab_index="-1" >
+			<string> <![CDATA[CREATE SCHEMA agno-db-dev;
+
+CREATE TABLE agno-db-dev.Account ( 
+	account_id INTEGER NOT NULL   AUTO_INCREMENT ,
+	account_name VARCHAR( 55 ) NOT NULL    ,
+	username VARCHAR( 55 ) NOT NULL    ,
+	password_hash VARCHAR( 55 ) NOT NULL    ,
+	mirror_hash VARCHAR( 55 ) NOT NULL    ,
+CONSTRAINT PK_Table_0 PRIMARY KEY ( account_id )
+ ) ;
+
+CREATE TABLE agno-db-dev.Users ( 
+	EntryNo INTEGER NOT NULL   AUTO_INCREMENT ,
+	account_id INTEGER NOT NULL    ,
+	face_id VARCHAR( 55 ) NOT NULL    ,
+	timestamp TIMESTAMP NOT NULL    ,
+	emotion VARCHAR( 55 ) NOT NULL    ,
+	image BLOB NOT NULL    ,
+CONSTRAINT PK_Users PRIMARY KEY ( EntryNo )
+ ) ;
+
+CREATE INDEX idx_Users ON agno-db-dev.Users ( account_id );
+
+ALTER TABLE agno-db-dev.Users ADD FOREIGN KEY fk_users_account ( account_id ) REFERENCES agno-db-dev.Account( account_id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+]]> </string>
+		</query>
+		<query name="Sql_002" tab_index="-1" >
+			<string> <![CDATA[CREATE SCHEMA agno-db-dev;
+
+CREATE TABLE agno-db-dev.Account ( 
+	account_id INTEGER NOT NULL   AUTO_INCREMENT ,
+	account_name VARCHAR( 55 ) NOT NULL    ,
+	username VARCHAR( 55 ) NOT NULL    ,
+	password_hash VARCHAR( 55 ) NOT NULL    ,
+	mirror_id VARCHAR( 55 ) NOT NULL    ,
+CONSTRAINT PK_Table_0 PRIMARY KEY ( account_id )
+ ) ;
+
+CREATE TABLE agno-db-dev.Users ( 
+	EntryNo INTEGER NOT NULL   AUTO_INCREMENT ,
+	account_id INTEGER NOT NULL    ,
+	face_id VARCHAR( 55 ) NOT NULL    ,
+	timestamp TIMESTAMP NOT NULL    ,
+	emotion VARCHAR( 55 ) NOT NULL    ,
+	image BLOB NOT NULL    ,
+CONSTRAINT PK_Users PRIMARY KEY ( EntryNo )
+ ) ;
+
+CREATE INDEX idx_Users ON agno-db-dev.Users ( account_id );
+
+ALTER TABLE agno-db-dev.Users ADD FOREIGN KEY fk_users_account ( account_id ) REFERENCES agno-db-dev.Account( account_id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+]]> </string>
+		</query>
+		<query name="Sql_003" tab_index="-1" >
 			<string> <![CDATA[CREATE SCHEMA agno-db-dev;
 
 CREATE TABLE agno-db-dev.Account ( 
@@ -83,11 +140,39 @@ CONSTRAINT PK_Users PRIMARY KEY ( EntryNo )
 CREATE INDEX idx_Users ON agno-db-dev.Users ( account_id );
 
 ALTER TABLE agno-db-dev.Users ADD FOREIGN KEY fk_users_account ( account_id ) REFERENCES agno-db-dev.Account( account_id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+]]> </string>
+		</query>
+		<query name="Sql_004" tab_index="0" >
+			<string> <![CDATA[CREATE SCHEMA agno_db;
+
+CREATE TABLE agno_db.Account ( 
+    account_id INTEGER NOT NULL   AUTO_INCREMENT ,
+    account_name VARCHAR( 55 ) NOT NULL    ,
+    username VARCHAR( 55 ) NOT NULL    ,
+    password_hash VARCHAR( 55 ) NOT NULL    ,
+    mirror_id VARCHAR( 55 ) NOT NULL    ,
+CONSTRAINT PK_Table_0 PRIMARY KEY ( account_id )
+ ) ;
+
+CREATE TABLE agno_db.Users ( 
+    EntryNo INTEGER NOT NULL   AUTO_INCREMENT ,
+    account_id INTEGER NOT NULL    ,
+    face_id VARCHAR( 55 ) NOT NULL    ,
+    timestamp TIMESTAMP NOT NULL    ,
+    emotion VARCHAR( 55 ) NOT NULL    ,
+    image BLOB NOT NULL    ,
+CONSTRAINT PK_Users PRIMARY KEY ( EntryNo )
+ ) ;
+
+CREATE INDEX idx_Users ON agno_db.Users ( account_id );
+
+ALTER TABLE agno_db.Users ADD FOREIGN KEY fk_users_account ( account_id ) REFERENCES agno_db.Account( account_id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ]]> </string>
 		</query>
 		<browser name="Browse_001" tab_index="-1" >
-			<browse_table schema="agno-db-dev" entity="Users" x="5" y="5" width="150" height="150" tabular="y" />
+			<browse_table schema="agno_db" entity="Users" x="5" y="5" width="150" height="150" tabular="y" />
 		</browser>
 	</layout>
 </project>
