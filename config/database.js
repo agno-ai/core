@@ -2,16 +2,16 @@ module.exports = {
   development: {
     username: 'root',
     password: 'pw4agnodb',
-    database: 'agno1',
+    database: 'mysql',
     host: '127.0.0.1',
-    //dialect: 'postgres'
+    dialect: 'mysql'
   },
   test: {
     username: 'root',
     password: 'pw4agnodb',
     database: 'agno1',
     host: '127.0.0.1',
-    //dialect: 'postgres'
+    dialect: 'mysql'
   },
   production: {
     username: process.env.RDS_USERNAME,

@@ -56,6 +56,7 @@ const UsersController = {
 
   create(req, res, next) {
     const { createUser, userSerializer } = req;
+
     const { SUCCESS, ERROR, VALIDATION_ERROR } = createUser.outputs;
 
     createUser

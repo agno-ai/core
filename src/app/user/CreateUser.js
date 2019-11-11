@@ -10,10 +10,10 @@ class CreateUser extends Operation {
   async execute(userData) {
     const { SUCCESS, ERROR, VALIDATION_ERROR } = this.outputs;
 
-    //const user = new User(userData);
+    const user = new User(userData);
 
     try {
-      const newUser = await this.usersRepository.add(userData);
+      const newUser = await this.usersRepository.add(user);
 
       this.emit(SUCCESS, newUser);
     } catch(error) {

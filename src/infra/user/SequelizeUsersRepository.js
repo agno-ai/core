@@ -18,14 +18,14 @@ class SequelizeUsersRepository {
   }
 
   async add(user) {
-    const { valid, errors } = user.validate();
+    /*const { valid, errors } = user.validate();
 
     if(!valid) {
       const error = new Error('ValidationError');
       error.details = errors;
 
       throw error;
-    }
+    }*/
 
     const newUser = await this.UserModel.create(UserMapper.toDatabase(user));
     return UserMapper.toEntity(newUser);

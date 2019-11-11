@@ -8,6 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     password_hash: DataTypes.STRING,
     mirror_id: DataTypes.STRING
   }, {
+    timestamps: false,
     classMethods: {
       associate() {
         // associations can be defined here
