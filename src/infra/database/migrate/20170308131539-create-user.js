@@ -2,31 +2,26 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Users', {
-      account_id: {
+      EntryNo: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      account_id: {
         type: Sequelize.INTEGER
       },
       face_id: {
         type: Sequelize.STRING
       },
       timestamp: {
-        type: Sequelize.STRING
+        type: Sequelize.DATETIME
       },
       emotion: {
         type: Sequelize.STRING
       },
       image: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.BLOB
       }
     });
   },

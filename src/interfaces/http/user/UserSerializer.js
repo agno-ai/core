@@ -1,8 +1,12 @@
 const UserSerializer = {
-  serialize({ face_id, account_id }) {
+  serialize({ EntryNo, face_id, account_id, timestamp, emotion, image  }) {
     return {
+      EntryNo,
       face_id,
-      account_id
+      account_id,
+      timestamp,
+      emotion,
+      image
     };
   }
 };
