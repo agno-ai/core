@@ -1,9 +1,6 @@
 const { attributes } = require('structure');
 
 const User = attributes({
-  EntryNo: {
-    type: Number
-  },
   account_id: {
     type: Number
   },
@@ -17,7 +14,7 @@ const User = attributes({
     type: String
   },
   image: {
-    type: String
+    type: Number
   }
 })(class User {
 

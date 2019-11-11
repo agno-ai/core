@@ -17,6 +17,10 @@ const config = Object.assign({
 module.exports = config;
 
 function loadDbConfig() {
+  if(process.env.DATABASE_URL) {
+    return process.env.DATABASE_URL;
+  }
+
   if(fs.existsSync(path.join(__dirname, './database.js'))) {
     return require('./database')[ENV];
   }
