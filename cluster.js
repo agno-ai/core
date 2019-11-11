@@ -7,10 +7,8 @@ const maxMemory = process.env.WEB_MEMORY || 512;
 pm2.connect(() => {
   pm2.start({
     script: 'index.js',
-    autorestart: true,
-    watch: true,
-    instances: 2,
-    max_memory_restart: '1G',
+    instances: instances,
+    max_memory_restart: `${maxMemory}M`,
     env: {
       NODE_ENV: 'production',
       NODE_PATH: '.'
