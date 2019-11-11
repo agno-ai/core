@@ -1,15 +1,15 @@
 module.exports = {
   development: {
     username: 'root',
-    password: 'pw4agnodb',
+    password: '.....',
     database: 'mysql',
     host: '127.0.0.1',
     dialect: 'mysql'
   },
   test: {
     username: 'root',
-    password: 'pw4agnodb',
-    database: 'agno1',
+    password: '.....',
+    database: 'test',
     host: '127.0.0.1',
     dialect: 'mysql'
   },
