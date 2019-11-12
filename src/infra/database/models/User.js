@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-<<<<<<< HEAD
-  const User = sequelize.define('user', {
-    face_id: DataTypes.STRING
-=======
+//<<<<<<< HEAD
+//  const User = sequelize.define('user', {
+//    face_id: DataTypes.STRING
+//=======
   const User = sequelize.define('User', {
     EntryNo: {
       type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamp: DataTypes.DATE,
     emotion: DataTypes.STRING,
     image: DataTypes.BLOB
->>>>>>> 3afb2ba0ba104886e5fa0f48d903d6a176401dbf
+//>>>>>>> 3afb2ba0ba104886e5fa0f48d903d6a176401dbf
   }, {
     timestamps: false,
     classMethods: {

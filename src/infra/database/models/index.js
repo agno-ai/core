@@ -4,10 +4,6 @@ const { db: config } = require('config');
 
 if(config) {
   const sequelize = new Sequelize(config);
-<<<<<<< HEAD
-
-=======
->>>>>>> 3afb2ba0ba104886e5fa0f48d903d6a176401dbf
   module.exports = ModelsLoader.load({
     sequelize,
     baseFolder: __dirname
